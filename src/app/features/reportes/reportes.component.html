@@ -1,0 +1,148 @@
+<div class="min-h-screen bg-slate-50 flex text-slate-800 font-sans relative">
+  
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white border-r border-slate-200 p-6 flex flex-col flex-shrink-0 shadow-sm z-10">
+    <div class="flex items-center mb-10">
+      <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center mr-3">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+        </svg>
+      </div>
+      <h1 class="text-xl font-bold text-slate-800 tracking-tight">DulciNelly</h1>
+    </div>
+
+    <nav class="space-y-2 text-sm font-medium">
+      <a *ngFor="let item of menuItems" 
+         [routerLink]="item.route"
+         class="block px-4 py-2.5 rounded-md transition-colors duration-200"
+         [class.bg-slate-800]="item.active"
+         [class.text-white]="item.active"
+         [class.text-slate-600]="!item.active"
+         [class.hover:bg-slate-100]="!item.active"
+         [class.hover:text-slate-900]="!item.active">
+        {{ item.label }}
+      </a>
+    </nav>
+    
+    <div class="mt-auto pt-6 border-t border-slate-200">
+      <div class="flex items-center">
+        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold mr-3">A</div>
+        <div>
+          <p class="text-sm font-medium text-slate-800">Admin</p>
+          <p class="text-xs text-slate-500">admin@dulcinelly.com</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8 overflow-y-auto">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Header Area -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-800">Reportes e Historial (Auditoría)</h2>
+          <p class="text-sm text-slate-500 mt-1">Consulta la trazabilidad inmutable de todos los movimientos</p>
+        </div>
+        
+        <button (click)="exportReport()" class="mt-4 sm:mt-0 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 px-4 py-2 rounded-md shadow-sm text-sm font-medium transition-colors flex items-center">
+          <svg class="w-5 h-5 mr-2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          Exportar Reporte
+        </button>
+      </div>
+
+      <!-- Filters Section -->
+      <div class="bg-white border border-slate-200 rounded-lg p-5 mb-6 shadow-sm">
+        <form [formGroup]="filterForm" (ngSubmit)="applyFilters()" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+          
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Fecha Inicio</label>
+            <input type="date" formControlName="fechaInicio" class="block w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 sm:text-sm bg-white">
+          </div>
+          
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Fecha Fin</label>
+            <input type="date" formControlName="fechaFin" class="block w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 sm:text-sm bg-white">
+          </div>
+          
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Sucursal</label>
+            <select formControlName="sucursal" class="block w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 sm:text-sm bg-white">
+              <option value="Todas">Todas</option>
+              <option value="Trujillo">Trujillo</option>
+              <option value="Huanchaco">Huanchaco</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Usuario</label>
+            <select formControlName="usuario" class="block w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-500 focus:border-slate-500 sm:text-sm bg-white">
+              <option value="Todos">Todos</option>
+              <option value="Carlos Admin">Carlos Admin</option>
+              <option value="Rosa Operaria">Rosa Operaria</option>
+            </select>
+          </div>
+          
+        </form>
+      </div>
+
+      <!-- Read-only Data Table -->
+      <div class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+        
+        <div class="bg-slate-50/50 px-4 py-3 border-b border-slate-200 flex items-center">
+          <svg class="w-4 h-4 text-slate-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+          <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Modo Solo Lectura (Auditoría)</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-slate-200">
+            <thead class="bg-slate-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Fecha / Hora</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Producto</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Movimiento</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Cantidad</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Motivo</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Usuario</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Orden Prod.</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-slate-200">
+              <tr *ngFor="let mov of filteredMovimientos" class="hover:bg-slate-50 transition-colors">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 font-mono">{{ mov.fecha }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">{{ mov.producto }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                        [ngClass]="mov.tipo === 'Entrada' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'">
+                    {{ mov.tipo }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold"
+                    [ngClass]="mov.tipo === 'Entrada' ? 'text-green-600' : 'text-red-600'">
+                  {{ mov.cantidad }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-700">{{ mov.motivo }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 flex items-center">
+                  <div class="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 text-[10px] font-bold mr-2">{{ mov.usuario.charAt(0) }}</div>
+                  {{ mov.usuario }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 font-mono">{{ mov.orden }}</td>
+              </tr>
+              <tr *ngIf="filteredMovimientos.length === 0">
+                <td colspan="7" class="px-6 py-8 text-center text-slate-500 text-sm">
+                  No se encontraron movimientos para los filtros aplicados.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+</div>
