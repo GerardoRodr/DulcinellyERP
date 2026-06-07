@@ -1,0 +1,88 @@
+<div class="min-h-screen bg-slate-50 flex text-slate-800 font-sans">
+  
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white border-r border-slate-200 p-6 flex flex-col flex-shrink-0 shadow-sm z-10">
+    <div class="flex items-center mb-10">
+      <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center mr-3">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+        </svg>
+      </div>
+      <h1 class="text-xl font-bold text-slate-800 tracking-tight">DulciNelly</h1>
+    </div>
+
+    <nav class="space-y-2 text-sm font-medium">
+      <a *ngFor="let item of menuItems" 
+         href="#" 
+         class="block px-4 py-2.5 rounded-md transition-colors duration-200"
+         [class.bg-slate-800]="item.active"
+         [class.text-white]="item.active"
+         [class.text-slate-600]="!item.active"
+         [class.hover:bg-slate-100]="!item.active"
+         [class.hover:text-slate-900]="!item.active">
+        {{ item.label }}
+      </a>
+    </nav>
+    
+    <div class="mt-auto pt-6 border-t border-slate-200">
+      <div class="flex items-center">
+        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold mr-3">A</div>
+        <div>
+          <p class="text-sm font-medium text-slate-800">Admin</p>
+          <p class="text-xs text-slate-500">admin@dulcinelly.com</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8 overflow-y-auto">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Header Area -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-800">Dashboard Multisucursal</h2>
+          <p class="text-sm text-slate-500 mt-1">Visión general del estado del negocio</p>
+        </div>
+        
+        <!-- Branch Selector -->
+        <div class="mt-4 sm:mt-0 flex items-center bg-white border border-slate-300 rounded-md shadow-sm px-3 py-2">
+          <label for="branch" class="text-sm font-medium text-slate-600 mr-2">Sucursal:</label>
+          <select id="branch" (change)="onBranchChange($event)" class="text-sm font-semibold text-slate-800 bg-transparent outline-none cursor-pointer focus:ring-0">
+            <option *ngFor="let branch of branches" [value]="branch" [selected]="branch === selectedBranch">{{ branch }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Alerts Section -->
+      <div class="bg-red-50 border border-red-200 rounded-lg p-5 mb-8 shadow-sm">
+        <h3 class="text-sm font-bold flex items-center text-red-800 mb-3 uppercase tracking-wider">
+          <svg class="w-5 h-5 mr-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+          Alertas de Stock Mínimo
+        </h3>
+        <ul class="space-y-2 text-sm text-red-700 ml-7">
+          <li *ngFor="let alert of lowStockAlerts" class="flex items-center">
+            <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-2"></span>
+            <span class="font-semibold">{{ alert.name }}</span>
+            <span class="ml-1 opacity-80">(Faltan {{ alert.missing }})</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div *ngFor="let metric of summaryMetrics" class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+          <h4 class="text-sm font-medium text-slate-500 mb-2">{{ metric.title }}</h4>
+          <div class="flex items-end justify-between">
+            <p class="text-3xl font-bold text-slate-800">{{ metric.value.split(' ')[0] }}</p>
+            <p class="text-sm text-slate-500 mb-1 font-medium">{{ metric.value.split(' ')[1] || '' }}</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+</div>
