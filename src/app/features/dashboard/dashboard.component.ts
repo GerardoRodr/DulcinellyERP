@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -23,10 +24,10 @@ export class DashboardComponent {
   ];
 
   menuItems = [
-    { label: 'Dashboard', active: true },
-    { label: 'Catálogo', active: false },
-    { label: 'Movimientos', active: false },
-    { label: 'Reportes', active: false }
+    { label: 'Dashboard', active: true, route: '/dashboard' },
+    { label: 'Catálogo', active: false, route: '/catalog' },
+    { label: 'Movimientos', active: false, route: '/movimientos' },
+    { label: 'Reportes', active: false, route: '/reportes' }
   ];
 
   onBranchChange(event: Event) {
