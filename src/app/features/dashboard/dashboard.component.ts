@@ -14,8 +14,10 @@ export class DashboardComponent {
   branches = ['Trujillo', 'Huanchaco', 'Todas'];
 
   summaryMetrics = [
-    { title: 'Entradas Hoy', value: '15 Movimientos' },
-    { title: 'Salidas Hoy', value: '8 Movimientos' }
+    { title: 'Entradas Hoy', value: '15', subtitle: 'Movimientos', icon: 'entradas', color: 'text-green-600', bg: 'bg-green-100' },
+    { title: 'Salidas Hoy', value: '8', subtitle: 'Movimientos', icon: 'salidas', color: 'text-blue-600', bg: 'bg-blue-100' },
+    { title: 'Total Insumos', value: '142', subtitle: 'En catálogo', icon: 'insumos', color: 'text-amber-600', bg: 'bg-amber-100' },
+    { title: 'Órdenes Activas', value: '3', subtitle: 'En producción', icon: 'ordenes', color: 'text-purple-600', bg: 'bg-purple-100' }
   ];
 
   lowStockAlerts = [

@@ -73,12 +73,24 @@
       </div>
 
       <!-- Summary Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div *ngFor="let metric of summaryMetrics" class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-          <h4 class="text-sm font-medium text-slate-500 mb-2">{{ metric.title }}</h4>
-          <div class="flex items-end justify-between">
-            <p class="text-3xl font-bold text-slate-800">{{ metric.value.split(' ')[0] }}</p>
-            <p class="text-sm text-slate-500 mb-1 font-medium">{{ metric.value.split(' ')[1] || '' }}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div *ngFor="let metric of summaryMetrics" class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+          <div class="flex justify-between items-start mb-4">
+            <h4 class="text-sm font-medium text-slate-500">{{ metric.title }}</h4>
+            <div class="p-2 rounded-lg" [ngClass]="metric.bg">
+              <!-- Entradas Icon -->
+              <svg *ngIf="metric.icon === 'entradas'" class="w-5 h-5" [ngClass]="metric.color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"></path></svg>
+              <!-- Salidas Icon -->
+              <svg *ngIf="metric.icon === 'salidas'" class="w-5 h-5" [ngClass]="metric.color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+              <!-- Insumos Icon -->
+              <svg *ngIf="metric.icon === 'insumos'" class="w-5 h-5" [ngClass]="metric.color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+              <!-- Ordenes Icon -->
+              <svg *ngIf="metric.icon === 'ordenes'" class="w-5 h-5" [ngClass]="metric.color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+            </div>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-slate-800">{{ metric.value }}</p>
+            <p class="text-sm text-slate-500 mt-1">{{ metric.subtitle }}</p>
           </div>
         </div>
       </div>
