@@ -1,41 +1,4 @@
-<div class="min-h-screen bg-slate-50 flex text-slate-800 font-sans relative">
-  
-  <!-- Sidebar -->
-  <aside class="w-64 bg-white border-r border-slate-200 p-6 flex flex-col flex-shrink-0 shadow-sm z-10">
-    <div class="flex items-center mb-10">
-      <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center mr-3">
-        <i class="fa-solid fa-cookie-bite text-white"></i>
-      </div>
-      <h1 class="text-xl font-bold text-slate-800 tracking-tight">DulciNelly</h1>
-    </div>
-
-    <nav class="space-y-2 text-sm font-medium">
-      <a *ngFor="let item of menuItems" 
-         [routerLink]="item.route"
-         class="block px-4 py-2.5 rounded-md transition-colors duration-200"
-         [class.bg-slate-800]="item.active"
-         [class.text-white]="item.active"
-         [class.text-slate-600]="!item.active"
-         [class.hover:bg-slate-100]="!item.active"
-         [class.hover:text-slate-900]="!item.active">
-        {{ item.label }}
-      </a>
-    </nav>
-    
-    <div class="mt-auto pt-6 border-t border-slate-200">
-      <div class="flex items-center">
-        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold mr-3">A</div>
-        <div>
-          <p class="text-sm font-medium text-slate-800">Admin</p>
-          <p class="text-xs text-slate-500">admin@dulcinelly.com</p>
-        </div>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="flex-1 p-8 overflow-y-auto">
-    <div class="max-w-7xl mx-auto">
+<div class="max-w-7xl mx-auto">
       
       <!-- Header Area -->
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
@@ -138,5 +101,4 @@
       </div>
       
     </div>
-  </main>
-</div>
+

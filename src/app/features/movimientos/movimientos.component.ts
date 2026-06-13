@@ -16,12 +16,7 @@ export class MovimientosComponent implements OnInit {
   isSubmitting = false;
   successMessage = '';
   
-  menuItems = [
-    { label: 'Dashboard', active: false, route: '/dashboard' },
-    { label: 'Catálogo', active: false, route: '/catalog' },
-    { label: 'Movimientos', active: true, route: '/movimientos' },
-    { label: 'Reportes', active: false, route: '/reportes' }
-  ];
+
 
   insumos = [
     { id: 'INS-001', name: 'Harina de Trigo' },

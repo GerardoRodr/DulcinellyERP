@@ -32,12 +32,7 @@ export class CatalogComponent {
   isEditing = false;
   productForm: FormGroup;
   
-  menuItems = [
-    { label: 'Dashboard', active: false, route: '/dashboard' },
-    { label: 'Catálogo', active: true, route: '/catalog' },
-    { label: 'Movimientos', active: false, route: '/movimientos' },
-    { label: 'Reportes', active: false, route: '/reportes' }
-  ];
+
 
   constructor(private fb: FormBuilder) {
     this.productForm = this.fb.group({

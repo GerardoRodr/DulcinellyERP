@@ -13,12 +13,7 @@ import { RouterModule } from '@angular/router';
 export class ReportesComponent {
   filterForm: FormGroup;
 
-  menuItems = [
-    { label: 'Dashboard', active: false, route: '/dashboard' },
-    { label: 'Catálogo', active: false, route: '/catalog' },
-    { label: 'Movimientos', active: false, route: '/movimientos' },
-    { label: 'Reportes', active: true, route: '/reportes' }
-  ];
+
 
   movimientos = [
     { id: 'MOV-1001', fecha: '2026-06-07 08:30:00', producto: 'Harina de Trigo', cantidad: '+50', tipo: 'Entrada', usuario: 'Carlos Admin', motivo: 'Compra a proveedor', orden: '-' },

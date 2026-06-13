@@ -33,12 +33,6 @@ export class DashboardComponent {
     { date: 'Ayer, 14:20 PM', item: 'Cacao en Polvo', type: 'Salida', qty: '2 kg', user: 'Admin' }
   ];
 
-  menuItems = [
-    { label: 'Dashboard', active: true, route: '/dashboard' },
-    { label: 'Catálogo', active: false, route: '/catalog' },
-    { label: 'Movimientos', active: false, route: '/movimientos' },
-    { label: 'Reportes', active: false, route: '/reportes' }
-  ];
 
   onBranchChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
