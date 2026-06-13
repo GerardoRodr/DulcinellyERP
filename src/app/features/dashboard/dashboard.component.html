@@ -1,182 +1,256 @@
 <div class="max-w-5xl mx-auto">
-      
-      <!-- Header Area -->
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
-        <div>
-          <h2 class="text-2xl font-bold text-slate-800">Dashboard Multisucursal</h2>
-          <p class="text-sm text-slate-500 mt-1">Visión general del estado del negocio</p>
-        </div>
-        
-        <!-- Branch Selector -->
-        <div class="mt-4 sm:mt-0 flex items-center bg-white border border-slate-300 rounded-md shadow-sm px-3 py-2">
-          <label for="branch" class="text-sm font-medium text-slate-600 mr-2">Sucursal:</label>
-          <select id="branch" (change)="onBranchChange($event)" class="text-sm font-semibold text-slate-800 bg-transparent outline-none cursor-pointer focus:ring-0">
-            <option *ngFor="let branch of branches" [value]="branch" [selected]="branch === selectedBranch">{{ branch }}</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Main Content Area: Chart and Alerts -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-        
-        <!-- Chart Mockup (Takes 2 columns on lg) -->
-        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col">
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-base font-bold text-slate-800 tracking-tight">Flujo de Movimientos</h3>
-            <select class="text-sm border-slate-200 rounded-md text-slate-600 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 outline-none px-3 py-1.5">
-              <option>Últimos 7 días</option>
-              <option>Este mes</option>
-            </select>
-          </div>
-          <!-- Mock Chart Graphic -->
-          <div class="flex-1 flex items-end justify-between space-x-2 pt-4 border-b border-slate-100 pb-2 relative h-48">
-             <!-- Y-axis labels mockup -->
-             <div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-400 pb-2">
-                <span>100</span>
-                <span>50</span>
-                <span>0</span>
-             </div>
-             <!-- Bars -->
-             <div class="w-full flex justify-around items-end h-full pl-8">
-                <!-- Day 1 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[60%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[40%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Lun</span>
-                </div>
-                <!-- Day 2 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[80%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[30%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Mar</span>
-                </div>
-                <!-- Day 3 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[45%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[60%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Mié</span>
-                </div>
-                <!-- Day 4 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[90%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[50%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Jue</span>
-                </div>
-                <!-- Day 5 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[70%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[80%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Vie</span>
-                </div>
-                <!-- Day 6 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[30%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[20%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Sáb</span>
-                </div>
-                <!-- Day 7 -->
-                <div class="flex flex-col items-center gap-1 group">
-                  <div class="flex gap-1.5 items-end h-32">
-                    <div class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[50%] group-hover:bg-green-500 transition-colors"></div>
-                    <div class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[40%] group-hover:bg-blue-500 transition-colors"></div>
-                  </div>
-                  <span class="text-xs text-slate-500 font-medium">Dom</span>
-                </div>
-             </div>
-          </div>
-          <div class="flex justify-center mt-4 space-x-6 text-sm text-slate-500">
-            <div class="flex items-center"><span class="w-3 h-3 bg-green-400 rounded-sm mr-2"></span>Entradas</div>
-            <div class="flex items-center"><span class="w-3 h-3 bg-blue-400 rounded-sm mr-2"></span>Salidas</div>
-          </div>
-        </div>
-
-        <!-- Alerts Section (Takes 1 column on lg) -->
-        <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="text-base font-bold flex items-center text-slate-800 tracking-tight">
-              <i class="fa-solid fa-triangle-exclamation text-red-500 mr-2 text-lg"></i>
-              Stock Crítico
-            </h3>
-            <a routerLink="/catalog" class="text-xs font-medium text-blue-600 hover:text-blue-800 transition-colors">Ver todo</a>
-          </div>
-          
-          <div class="space-y-5 flex-1 overflow-y-auto pr-1">
-            <div *ngFor="let alert of lowStockAlerts" class="flex flex-col">
-              <div class="flex justify-between text-sm mb-1.5">
-                <span class="font-semibold text-slate-700 truncate max-w-[120px]" [title]="alert.name">{{ alert.name }}</span>
-                <span class="text-slate-500 font-medium whitespace-nowrap"><span class="text-red-600 font-bold">{{ alert.current }}</span> / {{ alert.min }} {{ alert.unit }}</span>
-              </div>
-              <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                <div class="bg-red-500 h-2.5 rounded-full" [style.width.%]="alert.percentage"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Summary Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div *ngFor="let metric of summaryMetrics" class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-          <div class="flex justify-between items-start mb-4">
-            <h4 class="text-sm font-medium text-slate-500">{{ metric.title }}</h4>
-            <div class="p-2 rounded-lg flex items-center justify-center w-10 h-10" [ngClass]="metric.bg">
-              <i [class]="metric.icon + ' text-xl ' + metric.color"></i>
-            </div>
-          </div>
-          <div>
-            <p class="text-3xl font-bold text-slate-800">{{ metric.value }}</p>
-            <p class="text-sm text-slate-500 mt-1">{{ metric.subtitle }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recent Movements -->
-      <div class="mt-8 bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
-        <div class="px-6 py-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
-          <h3 class="text-base font-bold text-slate-800 tracking-tight">Últimos Movimientos</h3>
-          <a routerLink="/movimientos" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">Ver todos</a>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm whitespace-nowrap">
-            <thead class="bg-slate-50/50 text-slate-500">
-              <tr>
-                <th class="px-6 py-3 font-medium">Fecha</th>
-                <th class="px-6 py-3 font-medium">Insumo / Producto</th>
-                <th class="px-6 py-3 font-medium">Tipo</th>
-                <th class="px-6 py-3 font-medium">Cantidad</th>
-                <th class="px-6 py-3 font-medium">Usuario</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 text-slate-700">
-              <tr *ngFor="let mov of recentMovements" class="hover:bg-slate-50 transition-colors">
-                <td class="px-6 py-4 text-slate-500">{{ mov.date }}</td>
-                <td class="px-6 py-4 font-medium">{{ mov.item }}</td>
-                <td class="px-6 py-4">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-                        [ngClass]="{'bg-green-100 text-green-800': mov.type === 'Entrada', 'bg-blue-100 text-blue-800': mov.type === 'Salida'}">
-                    {{ mov.type }}
-                  </span>
-                </td>
-                <td class="px-6 py-4 font-semibold">{{ mov.qty }}</td>
-                <td class="px-6 py-4 text-slate-500">{{ mov.user }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      
+  <!-- Header Area -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+    <div>
+      <h2 class="text-2xl font-bold text-slate-800">Dashboard Multisucursal</h2>
+      <p class="text-sm text-slate-500 mt-1">Visión general del estado del negocio</p>
     </div>
 
+    <!-- Branch Selector -->
+    <div
+      class="mt-4 sm:mt-0 flex items-center bg-white border border-slate-300 rounded-md shadow-sm px-3 py-2"
+    >
+      <label for="branch" class="text-sm font-medium text-slate-600 mr-2">Sucursal:</label>
+      <select
+        id="branch"
+        (change)="onBranchChange($event)"
+        class="text-sm font-semibold text-slate-800 bg-transparent outline-none cursor-pointer focus:ring-0"
+      >
+        @for (branch of branches; track branch) {
+          <option [value]="branch" [selected]="branch === selectedBranch">{{ branch }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Content Area: Chart and Alerts -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+    <!-- Chart Mockup (Takes 2 columns on lg) -->
+    <div
+      class="lg:col-span-2 bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col"
+    >
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-base font-bold text-slate-800 tracking-tight">Flujo de Movimientos</h3>
+        <select
+          class="text-sm border-slate-200 rounded-md text-slate-600 focus:ring-blue-500 focus:border-blue-500 bg-slate-50 outline-none px-3 py-1.5"
+        >
+          <option>Últimos 7 días</option>
+          <option>Este mes</option>
+        </select>
+      </div>
+      <!-- Mock Chart Graphic -->
+      <div
+        class="flex-1 flex items-end justify-between space-x-2 pt-4 border-b border-slate-100 pb-2 relative h-48"
+      >
+        <!-- Y-axis labels mockup -->
+        <div
+          class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-slate-400 pb-2"
+        >
+          <span>100</span>
+          <span>50</span>
+          <span>0</span>
+        </div>
+        <!-- Bars -->
+        <div class="w-full flex justify-around items-end h-full pl-8">
+          <!-- Day 1 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[60%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[40%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Lun</span>
+          </div>
+          <!-- Day 2 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[80%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[30%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Mar</span>
+          </div>
+          <!-- Day 3 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[45%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[60%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Mié</span>
+          </div>
+          <!-- Day 4 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[90%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[50%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Jue</span>
+          </div>
+          <!-- Day 5 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[70%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[80%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Vie</span>
+          </div>
+          <!-- Day 6 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[30%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[20%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Sáb</span>
+          </div>
+          <!-- Day 7 -->
+          <div class="flex flex-col items-center gap-1 group">
+            <div class="flex gap-1.5 items-end h-32">
+              <div
+                class="w-4 lg:w-5 bg-green-400 rounded-t-sm h-[50%] group-hover:bg-green-500 transition-colors"
+              ></div>
+              <div
+                class="w-4 lg:w-5 bg-blue-400 rounded-t-sm h-[40%] group-hover:bg-blue-500 transition-colors"
+              ></div>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">Dom</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-4 space-x-6 text-sm text-slate-500">
+        <div class="flex items-center">
+          <span class="w-3 h-3 bg-green-400 rounded-sm mr-2"></span>Entradas
+        </div>
+        <div class="flex items-center">
+          <span class="w-3 h-3 bg-blue-400 rounded-sm mr-2"></span>Salidas
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts Section (Takes 1 column on lg) -->
+    <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm flex flex-col">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold flex items-center text-slate-800 tracking-tight">
+          <i class="fa-solid fa-triangle-exclamation text-red-500 mr-2 text-lg"></i>
+          Stock Crítico
+        </h3>
+        <a
+          routerLink="/catalog"
+          class="text-xs font-medium text-blue-600 hover:text-blue-800 transition-colors"
+          >Ver todo</a
+        >
+      </div>
+
+      <div class="space-y-5 flex-1 overflow-y-auto pr-1">
+        @for (alert of lowStockAlerts; track alert) {
+          <div class="flex flex-col">
+            <div class="flex justify-between text-sm mb-1.5">
+              <span
+                class="font-semibold text-slate-700 truncate max-w-[120px]"
+                [title]="alert.name"
+                >{{ alert.name }}</span
+              >
+              <span class="text-slate-500 font-medium whitespace-nowrap"
+                ><span class="text-red-600 font-bold">{{ alert.current }}</span> / {{ alert.min }}
+                {{ alert.unit }}</span
+              >
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+              <div class="bg-red-500 h-2.5 rounded-full" [style.width.%]="alert.percentage"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (metric of summaryMetrics; track metric) {
+      <div
+        class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
+      >
+        <div class="flex justify-between items-start mb-4">
+          <h4 class="text-sm font-medium text-slate-500">{{ metric.title }}</h4>
+          <div
+            class="p-2 rounded-lg flex items-center justify-center w-10 h-10"
+            [ngClass]="metric.bg"
+          >
+            <i [class]="metric.icon + ' text-xl ' + metric.color"></i>
+          </div>
+        </div>
+        <div>
+          <p class="text-3xl font-bold text-slate-800">{{ metric.value }}</p>
+          <p class="text-sm text-slate-500 mt-1">{{ metric.subtitle }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Recent Movements -->
+  <div class="mt-8 bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+    <div class="px-6 py-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+      <h3 class="text-base font-bold text-slate-800 tracking-tight">Últimos Movimientos</h3>
+      <a
+        routerLink="/movimientos"
+        class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
+        >Ver todos</a
+      >
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm whitespace-nowrap">
+        <thead class="bg-slate-50/50 text-slate-500">
+          <tr>
+            <th class="px-6 py-3 font-medium">Fecha</th>
+            <th class="px-6 py-3 font-medium">Insumo / Producto</th>
+            <th class="px-6 py-3 font-medium">Tipo</th>
+            <th class="px-6 py-3 font-medium">Cantidad</th>
+            <th class="px-6 py-3 font-medium">Usuario</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 text-slate-700">
+          @for (mov of recentMovements; track mov) {
+            <tr class="hover:bg-slate-50 transition-colors">
+              <td class="px-6 py-4 text-slate-500">{{ mov.date }}</td>
+              <td class="px-6 py-4 font-medium">{{ mov.item }}</td>
+              <td class="px-6 py-4">
+                <span
+                  class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                  [ngClass]="{
+                    'bg-green-100 text-green-800': mov.type === 'Entrada',
+                    'bg-blue-100 text-blue-800': mov.type === 'Salida',
+                  }"
+                >
+                  {{ mov.type }}
+                </span>
+              </td>
+              <td class="px-6 py-4 font-semibold">{{ mov.qty }}</td>
+              <td class="px-6 py-4 text-slate-500">{{ mov.user }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
