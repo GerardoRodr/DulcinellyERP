@@ -26,6 +26,13 @@ export class DashboardComponent {
     { name: 'Cacao en Polvo', current: 1, min: 5, unit: 'kg', percentage: 20 }
   ];
 
+  recentMovements = [
+    { date: 'Hoy, 10:30 AM', item: 'Harina de Trigo', type: 'Entrada', qty: '50 kg', user: 'Admin' },
+    { date: 'Hoy, 09:15 AM', item: 'Torta de Chocolate', type: 'Salida', qty: '5 unds', user: 'Admin' },
+    { date: 'Ayer, 16:45 PM', item: 'Azúcar Blanca', type: 'Entrada', qty: '25 kg', user: 'Admin' },
+    { date: 'Ayer, 14:20 PM', item: 'Cacao en Polvo', type: 'Salida', qty: '2 kg', user: 'Admin' }
+  ];
+
   menuItems = [
     { label: 'Dashboard', active: true, route: '/dashboard' },
     { label: 'Catálogo', active: false, route: '/catalog' },

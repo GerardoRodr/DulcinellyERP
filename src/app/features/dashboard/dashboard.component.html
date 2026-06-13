@@ -102,6 +102,41 @@
           </div>
         </div>
       </div>
+
+      <!-- Recent Movements -->
+      <div class="mt-8 bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+        <div class="px-6 py-5 border-b border-slate-200 flex justify-between items-center bg-slate-50">
+          <h3 class="text-base font-bold text-slate-800 tracking-tight">Últimos Movimientos</h3>
+          <a routerLink="/movimientos" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">Ver todos</a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm whitespace-nowrap">
+            <thead class="bg-slate-50/50 text-slate-500">
+              <tr>
+                <th class="px-6 py-3 font-medium">Fecha</th>
+                <th class="px-6 py-3 font-medium">Insumo / Producto</th>
+                <th class="px-6 py-3 font-medium">Tipo</th>
+                <th class="px-6 py-3 font-medium">Cantidad</th>
+                <th class="px-6 py-3 font-medium">Usuario</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr *ngFor="let mov of recentMovements" class="hover:bg-slate-50 transition-colors">
+                <td class="px-6 py-4 text-slate-500">{{ mov.date }}</td>
+                <td class="px-6 py-4 font-medium">{{ mov.item }}</td>
+                <td class="px-6 py-4">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
+                        [ngClass]="{'bg-green-100 text-green-800': mov.type === 'Entrada', 'bg-blue-100 text-blue-800': mov.type === 'Salida'}">
+                    {{ mov.type }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 font-semibold">{{ mov.qty }}</td>
+                <td class="px-6 py-4 text-slate-500">{{ mov.user }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       
     </div>
   </main>
