@@ -21,8 +21,9 @@ export class DashboardComponent {
   ];
 
   lowStockAlerts = [
-    { name: 'Harina', missing: '5kg' },
-    { name: 'Azúcar', missing: '2kg' }
+    { name: 'Harina de Trigo', current: 5, min: 20, unit: 'kg', percentage: 25 },
+    { name: 'Azúcar Blanca', current: 2, min: 15, unit: 'kg', percentage: 13 },
+    { name: 'Cacao en Polvo', current: 1, min: 5, unit: 'kg', percentage: 20 }
   ];
 
   menuItems = [
